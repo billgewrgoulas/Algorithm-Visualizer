@@ -11,7 +11,7 @@
         "deploy": "gh-pages -d docs"
     },
     "private": true,
-    "homepage": "https://github.com/billgewrgoulas/Algorithm-Visualizer",
+    "homepage": "https://billgewrgoulas.github.io/Algorithm-Visualizer",
     "dependencies": {
         "@angular/animations": "~11.0.0",
         "@angular/cdk": "^12.1.4",
