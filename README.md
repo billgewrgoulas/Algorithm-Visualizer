@@ -2,6 +2,8 @@
 
 Angular app that visualizes various algorithms from my university assignments for maze generation and pathfinding in a spatial network.
 
+https://billgewrgoulas.github.io/Algorithm-Visualizer/
+
 ## PathFinding Algorithms  
 
 A*: A modified version of dijkstra's algorithm that chooses the best node to visit based on an heuristic function.  
