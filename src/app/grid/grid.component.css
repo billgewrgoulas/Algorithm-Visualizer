@@ -1,0 +1,139 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(45, 1fr);
+    border-bottom: 1px solid rgba(182, 188, 255, 0.8);
+    border-right: 1px solid rgba(182, 188, 255, 0.8);
+}
+
+.grid-item {
+    border-left: 1px solid rgba(182, 188, 255, 0.8);
+    border-top: 1px solid rgba(182, 188, 255, 0.8);
+    height: 22px;
+    transition: background-color .3s;
+    display: grid;
+    place-items: center;
+    color: white;
+}
+
+.grid-item>i {
+    color: orangered;
+    animation-name: fall;
+    animation-duration: .3s;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-40px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.grid-item-borders {
+    border: 1px solid #022335 !important;
+}
+
+.grid-item-path {
+    border: 1px solid yellow;
+    animation-name: stretch;
+    animation-duration: .4s;
+    animation-timing-function: ease-out;
+}
+
+.main {
+    margin-top: 4.3%;
+    padding: 1.7rem;
+    text-align: center;
+}
+
+.main>h1 {
+    font-size: 2vw;
+}
+
+.squere {
+    height: 25px;
+    width: 25px;
+    margin-right: 8px;
+}
+
+.wall {
+    background-color: #022335;
+}
+
+.visited {
+    background-color: #4d8ab1;
+}
+
+.path {
+    background-color: yellow;
+}
+
+.start {
+    background-color: blue;
+}
+
+.meeting {
+    background-color: #de00ff;
+}
+
+.points {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4vw;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #022335;
+    font-size: 1.7vw;
+    font-weight: bold;
+}
+
+.squere>i {
+    color: orangered;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.points>:last-child {
+    margin-left: -15px;
+}
+
+.magenta {
+    animation-name: stretch;
+    animation-duration: .4s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes stretch {
+    0% {
+        transform: scale(.3);
+        border-radius: 50%;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .main {
+        margin-top: 6%;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .main {
+        margin-top: 10%;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .main {
+        margin-top: 15%;
+    }
+}

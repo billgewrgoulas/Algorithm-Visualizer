@@ -1,0 +1,56 @@
+<div class="main">
+  <div class="points">
+    <div class="info">
+      <div class="squere wall"></div>
+      Wall
+    </div>
+    <div class="info">
+      <div class="squere visited"></div>
+      <div class="squere meeting"></div>
+      Visited
+    </div>
+    <div class="info">
+      <div class="squere path"></div>
+      Path
+    </div>
+    <div class="info">
+      <div class="squere start"></div>
+      Start
+    </div>
+    <div class="info">
+      <div class="squere"><i class="fas fa-map-marker"></i></div>
+      End Point
+    </div>
+  </div>
+  <div
+    class="grid-container"
+    (mouseup)="mouseUp()"
+    (mousedown)="mouseDown()"
+    (mouseenter)="disable()"
+    cdkDropListGroup
+  >
+    <ng-container *ngFor="let row of gridarray; let i = index">
+      <div
+        *ngFor="let cell of row; let j = index"
+        class="grid-item"
+        [style.background-color]="cell.color"
+        [class.grid-item-borders]="cell.type == 'wall'"
+        [class.grid-item-path]="cell.type == 'path'"
+        [class.magenta]="
+          cell.type == 'visited' || cell.type == 'wall' || cell.type == 'start'
+        "
+        (mouseover)="hovered(i, j)"
+        (click)="setstarter(i, j)"
+        cdkDropList
+      >
+        <i
+          class="fas fa-map-marker"
+          cdkDrag
+          cdkDragBoundary=".grid-container"
+          [cdkDragDisabled]="!draggable || option == 0"
+          *ngIf="cell.end"
+        ></i>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,171 @@
+<div class="navbar">
+  <div class="welcome">
+    <h1>PathFinding Visualizer</h1>
+  </div>
+  <div class="options">
+    <div (click)="start()" [class.marked]="options[0]">Set Points</div>
+    <div (click)="walls()" [class.marked]="options[1]">Draw Walls</div>
+    <div class="mazes">
+      Mazes
+      <div class="dropdown">
+        <div (click)="mazes(1)">Recursive Division</div>
+        <div (click)="mazes(2)">Recursive Backtracker</div>
+        <div (click)="mazes(3)">Random Kruskal</div>
+        <div (click)="mazes(4)">Random Prim</div>
+        <div (click)="mazes(5)">Aldous-Broder</div>
+      </div>
+    </div>
+    <div class="mazes">
+      Algorithms
+      <div class="dropdown">
+        <div (click)="pathFinding(1)">Astar</div>
+        <div (click)="pathFinding(2)">Breadth First Search</div>
+        <div (click)="pathFinding(3)">Depth First Search</div>
+        <div (click)="pathFinding(4)">Uniform Cost Search</div>
+        <div (click)="topKq(6)">Optimal Meeting Point</div>
+        <div (click)="fight()">Fight the algorithm!</div>
+      </div>
+    </div>
+    <div class="mazes" [class.marked]="options[2]">
+      Clear
+      <div class="dropdown">
+        <div (click)="clear(1)">Clear Board</div>
+        <div (click)="clear(3)">Clear Path</div>
+        <div (click)="clear(4)">Clear Walls</div>
+        <div (click)="clear(2)">Clear Paths and Points</div>
+      </div>
+    </div>
+    <div (click)="visualize()" [class.marked]="options[3]">
+      Visualize {{ pathFind }}
+    </div>
+    <div
+      data-toggle="modal"
+      onclick="firstSlide()"
+      data-target="#exampleModalCenter"
+    >
+      Guide
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="max-height: 350px">
+        <div class="w3-content w3-display-container">
+          <div class="wrapper">
+            <button class="btn btn-primary" onclick="plusDivs(-1)">
+              &#10094;
+            </button>
+
+            <div class="w3-display-container mySlides">
+              <div class="content">
+                <h1>Drawing Walls</h1>
+                <p>
+                  You can draw walls by selecting the option on the navbar and
+                  then clicking and hovering on the grid. Click again to stop
+                  drawing. A wall can not go over any other special point.
+                </p>
+                <img class="preview" src="assets/walls.gif" />
+              </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+              <div class="content">
+                <h1>Welcome!!</h1>
+                <p class="h">
+                  Welcome to the Path Finding Visualizer!. In this project you
+                  can see in action various algorithms for path finding and
+                  perfect maze generation!.
+                  <br /><br />
+                  For the visualization a 2D grid graph was used and each
+                  movement can have a vertical or a horizontal direction.
+                  Moreover a node can have up to 4 neighbors, and the cost of
+                  each edge is 1.
+                </p>
+              </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+              <div class="content">
+                <h1>Maze Generation</h1>
+                <p>
+                  You can generate mazes by selecting an algorithm from the
+                  Mazes dropdown menu. Note that you can't generate mazes when
+                  the Fight the algorithm option is selected.
+                </p>
+                <img class="preview" src="assets/mazes.gif" />
+              </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+              <div class="content">
+                <h1>PathFinding Algorithms</h1>
+                <p class="h">
+                  A*: A modified version of dijkstra's algorithm that chooses
+                  the best node to visit based on an heuristic function.
+                  <br /><br />BFS/DFS: BFS starts exploring all nodes from the
+                  closest to the furthest away nodes and guarantees the shortest
+                  path. DFS on the other hand starts from the furthest away
+                  nodes and does not guarantee the shortest path.
+                  <br /><br />Uniform Cost Search: The algorithm starts with a
+                  priority queue that contains only one item, and inserts new
+                  items as they are discovered.
+                </p>
+                <img class="preview" src="assets/astar.gif" />
+              </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+              <div class="content">
+                <h1>Best Meeting Point</h1>
+                <p>
+                  For this problem a combination of Non Random Access algorithm
+                  and an incremental version of Dijkstra's algorithhm was used.
+                  NRA is an algorithm used for topK queries and in this case we
+                  will be doing a top1 query. Each time the algorithm gets the
+                  next closest node from every starting node and checks if every
+                  starting node has reached one of those next closest nodes,
+                  updating the minimum distance as well as the maximum. If a
+                  node has been visited by all the starting nodes it is compared
+                  with the previous meeting point based on the maximum distance.
+                  The result is a node that has the minimum maximum distance.
+                  Due to the nature of NRA the worst case is O(k(V + ElogV)).
+                  However if the starting nodes are close the algorithm will
+                  terminate very fast. Up to ten points can be selected and you
+                  can also add walls or mazes to see the algorithm in action.
+                </p>
+                <img class="preview" src="assets/nra.gif" />
+              </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+              <div class="content">
+                <h1>Fight the algorithm!</h1>
+                <p class="h">
+                  For this problem Astar was used. Since the process is a
+                  separate thread it is possible to draw walls while the
+                  algorithm is running and redirect it to find the next closest
+                  path.You can drag and drop the end point to a different
+                  location or just click on the grid to move it around.
+                </p>
+                <img class="preview" src="assets/fight.gif" />
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="plusDivs(1)">
+              &#10095;
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
