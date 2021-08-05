@@ -23,7 +23,7 @@ Randomized Prim's:
 This algorithm produces uniform spanning trees. Starting from a single node it chooses a neighbor and connects it randomly to one of the already visited node's. Then it repeats by selecting one of the visited's nodes neighbors.
 
 Randomized Kruskal's:  
-This algo also produces uniform spanning trees. Each time picks up an edge randomly and if the two vertices are in different dissjoint sets it connects them.
+This algo also produces uniform spanning trees. Each time it picks up an edge randomly and if the two vertices are in different dissjoint sets it connects them.
 
 Aldous Broder:  
 Chooses a connected neighbor of the vertex and travel to it. If the neighbor has not yet been visited, add the traveled edge to the spanning tree. This repeats till all nodes have been visited. This algorithm is very inefficient.
