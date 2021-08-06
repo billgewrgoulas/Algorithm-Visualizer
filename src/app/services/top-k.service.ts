@@ -21,7 +21,7 @@ export class TopKService {
     }
     State.inProgress = true;
     this.graph = graph;
-    if (o == 6) {
+    if (o == 5) {
       this.nra(ids);
     }
   }

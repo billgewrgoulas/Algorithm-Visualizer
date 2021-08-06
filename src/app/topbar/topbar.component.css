@@ -101,6 +101,10 @@
     width: 100%;
 }
 
+.pos {
+    right: -53px !important;
+}
+
 .wrapper {
     display: flex;
     flex-direction: row;

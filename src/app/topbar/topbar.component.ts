@@ -16,13 +16,12 @@ import { TopKService } from '../services/top-k.service';
 export class TopbarComponent implements OnInit, OnDestroy {
   public options: boolean[] = [true, false, false, false, false];
   private algos: string[] = [
-    'Astar',
-    'BFS',
-    'DFS',
-    'UCS',
-    'BFord',
-    'NRA',
-    'Fight!',
+    'Visualize Astar',
+    'Visualize BFS',
+    'Visualize DFS',
+    'Visualize UCS',
+    'Visualize NRA',
+    'Fight the Algorithm',
   ];
   private index: any = 0;
   private observers: Subscription[] = [];
@@ -32,7 +31,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   private topkService?: TopKService;
   private builder: Builder = new Builder();
   private opt: number = 0;
-  public pathFind: string = '';
+  public pathFind: string = 'Visualize';
 
   constructor(private share: ObserversService) {}
 
@@ -142,8 +141,14 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
   public pathFinding(opt: number) {
     if (State.type != 'sp') {
-      this.mazeService?.clearPathAndPoints();
+      this.mazeService?.clearPath();
+    }
+    if (State.points.length > 2) {
       State.points = [];
+      this.mazeService?.clearPathAndPoints();
+    }
+    if (State.type == 'f') {
+      this.mazeService?.clear();
     }
     this.opt = opt;
     this.pathFind = this.algos[opt - 1];
@@ -153,8 +158,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
   public topKq(o: number) {
     if (State.type != 'pf') {
-      this.mazeService?.clearPathAndPoints();
-      State.points = [];
+      this.mazeService?.clearPath();
+    }
+    if (State.type == 'f') {
+      this.mazeService?.clear();
     }
     this.opt = o;
     this.pathFind = this.algos[o - 1];
@@ -163,7 +170,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   public fight() {
-    this.pathFind = '';
+    this.pathFind = this.algos[5];
     State.type = 'f';
     State.points = [];
     this.mazeService?.clear();

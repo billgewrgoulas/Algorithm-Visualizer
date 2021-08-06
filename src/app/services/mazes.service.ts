@@ -101,6 +101,7 @@ export class MazesService {
           c.type = 'empty';
           c.visited = false;
           c.end = false;
+          c.meet = false;
         }
       });
     });
@@ -117,6 +118,7 @@ export class MazesService {
           c.type = 'empty';
           c.visited = false;
           c.end = false;
+          c.meet = false;
         }
       });
     });
@@ -131,12 +133,16 @@ export class MazesService {
         if (c.color == 'yellow' && !c.end) {
           c.color = 'white';
           c.type = 'empty';
-          c.visited = false;
-          c.end = false;
-        } else if (c.end) {
+        } else if (c.end && c.meet) {
           c.color = 'white';
-          c.type = 'end';
+          c.type = 'empty';
+        } else if (c.end) {
+          c.color = 'blue';
+          c.type = 'start';
         }
+        c.end = false;
+        c.visited = false;
+        c.meet = false;
       });
     });
   }
@@ -152,6 +158,7 @@ export class MazesService {
         c.type = 'empty';
         c.visited = false;
         c.end = false;
+        c.meet = false;
       });
     });
   }

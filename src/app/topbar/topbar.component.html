@@ -17,12 +17,12 @@
     </div>
     <div class="mazes">
       Algorithms
-      <div class="dropdown">
+      <div class="dropdown pos">
         <div (click)="pathFinding(1)">Astar</div>
         <div (click)="pathFinding(2)">Breadth First Search</div>
         <div (click)="pathFinding(3)">Depth First Search</div>
         <div (click)="pathFinding(4)">Uniform Cost Search</div>
-        <div (click)="topKq(6)">Optimal Meeting Point</div>
+        <div (click)="topKq(5)">Optimal Meeting Point</div>
         <div (click)="fight()">Fight the algorithm!</div>
       </div>
     </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div (click)="visualize()" [class.marked]="options[3]">
-      Visualize {{ pathFind }}
+      {{ pathFind }}
     </div>
     <div
       data-toggle="modal"

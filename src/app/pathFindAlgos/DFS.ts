@@ -19,7 +19,6 @@ export class DFS {
     while (stack.length > 0) {
       let v: any = stack.pop();
       let p = this.graph[v].pos;
-      console.log(this.grid[p[0]][p[1]]);
       path.push(v);
 
       this.animator(p[0], p[1]);

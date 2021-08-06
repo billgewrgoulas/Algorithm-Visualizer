@@ -179,6 +179,7 @@ export class NRA {
         let x = this.graph[this.best].pos[0];
         let y = this.graph[this.best].pos[1];
         this.grid[x][y].end = true;
+        this.grid[x][y].meet = true;
         this.grid[x][y].color = 'yellow';
         this.clear();
         this.printPaths(ids);
@@ -186,7 +187,7 @@ export class NRA {
       }
     }, 10);
 
-    await this.sleep(100);
+    await this.sleep(1);
   }
 
   private animator(id: any) {
