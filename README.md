@@ -19,7 +19,7 @@ The algorithm devides the maze's space horizontally or vertically at random each
 It returns when a subfield reaches the minimum size.
 
 Recursive Backtracker:  
-This a randomized version of dfs. Each time randomly chooses an unvisited neighbor recursively.
+This a randomized version of dfs. Each time the algorithm randomly chooses an unvisited neighbor recursively.
 
 Randomized Prim's:  
 This algorithm produces uniform spanning trees. Starting from a single node it chooses a neighbor and connects it randomly to one of the already visited node's. Then it repeats by selecting one of the visited's nodes neighbors.
