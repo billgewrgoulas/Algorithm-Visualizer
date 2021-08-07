@@ -2,8 +2,6 @@
 
 Angular app that visualizes various algorithms from my university assignments for maze generation and pathfinding in a spatial network. For the visualization a 2D grid graph was used and each movement can have a vertical or a horizontal direction. Moreover a node can have up to 4 neighbors, and the cost of each edge is 1.
 
-https://billgewrgoulas.github.io/Algorithm-Visualizer/
-
 ## PathFinding Algorithms  
 
 A*: A modified version of dijkstra's algorithm that chooses the best node to visit based on an heuristic function.  
