@@ -41,9 +41,9 @@ export class recursiveDivision {
         }
       }
 
-      //upper
-      this.recDiv(sx, sy, ex, yp - 1);
-      // lower
+      //upper subfield bounds
+      this.recDiv(sx, sy, ex, yp - 1); //the animation looks cooler if we let the threads run in parallel ;)
+      // lower subfield bounds
       this.recDiv(sx, yp + 1, ex, ey);
     } else {
       //vertical
@@ -64,9 +64,9 @@ export class recursiveDivision {
         }
       }
 
-      //left
+      //left subfield bounds
       this.recDiv(sx, sy, xp - 1, ey);
-      // right
+      // right subfield bounds
       this.recDiv(xp + 1, sy, ex, ey);
     }
   }

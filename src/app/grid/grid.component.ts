@@ -15,11 +15,17 @@ import { State } from '../globalVar';
 export class GridComponent implements OnInit, OnDestroy {
   //graph info
   private grid: Cell[][] = [];
-  private columns = 45;
-  private rows = 19;
+  private readonly columns = 45;
+  private readonly rows = 19;
   private c: number[] = [];
   private next: number[] = [];
-  private timer: any;
+
+  //starters for fight the algorithm
+  private readonly sx: number = 9;
+  private readonly sy: number = 4;
+
+  private readonly ex: number = 9;
+  private readonly ey: number = 30;
 
   //options
   private clicked: boolean = false;
@@ -105,9 +111,9 @@ export class GridComponent implements OnInit, OnDestroy {
   }
 
   public setPoints() {
-    this.setstarter(9, 4);
-    this.grid[9][30].end = true;
-    this.c = [9, 30];
+    this.setstarter(this.sx, this.sy);
+    this.grid[this.ex][this.ey].end = true;
+    this.c = [this.ex, this.ey];
   }
 
   public mouseUp() {

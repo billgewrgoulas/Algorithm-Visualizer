@@ -1,6 +1,7 @@
 import { Node } from '../grid/node';
 import { Heapq } from 'ts-heapq';
 import { Cell } from '../grid/cell';
+import { State } from '../globalVar';
 
 export class NRA {
   private graph: Node[];
@@ -13,6 +14,7 @@ export class NRA {
   private visited: any = [];
   private readonly minDist: Number = 100000;
   private timers: number = 0;
+  private path_mutex: number = 0;
 
   private LBq: Heapq<any> = new Heapq<any>([], this.comparator);
   private bests: any = {};
@@ -133,7 +135,7 @@ export class NRA {
     return v;
   }
 
-  public async btmK(ids: any) {
+  public btmK(ids: any) {
     for (let i = 0; i < ids.length; i++) {
       this.spds[i][ids[i]] = 0;
       this.paths[i][ids[i]] = ids[i] + '';
@@ -170,6 +172,12 @@ export class NRA {
 
     if (!this.best) {
       confirm('meeting point doesnt exist');
+      let int = setInterval(() => {
+        if (this.timers <= 0) {
+          State.inProgress = false;
+          clearInterval(int);
+        }
+      }, 10);
       return;
     }
 
@@ -186,8 +194,6 @@ export class NRA {
         clearInterval(int);
       }
     }, 10);
-
-    await this.sleep(1);
   }
 
   private animator(id: any) {
@@ -212,21 +218,28 @@ export class NRA {
 
   private printPaths(ids: any) {
     for (let i = 0; i < ids.length; i++) {
-      let p = this.paths[i][this.best].split('->');
-      p.forEach((e: string, index: any) => {
+      let path = this.paths[i][this.best]
+        .split('->')
+        .map((p: string) => parseInt(p));
+      path.forEach((e: number, index: any) => {
+        this.path_mutex++;
         setTimeout(() => {
-          let x = this.graph[parseInt(e)].pos[0];
-          let y = this.graph[parseInt(e)].pos[1];
+          let x = this.graph[e].pos[0];
+          let y = this.graph[e].pos[1];
           if (this.grid[x][y].type == 'empty' || this.grid[x][y].end) {
             this.grid[x][y].color = 'yellow';
             this.grid[x][y].type = 'path';
           }
+          this.path_mutex--;
         }, 70 * index);
       });
     }
-  }
 
-  private sleep(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    let int = setInterval(() => {
+      if (this.path_mutex <= 0) {
+        State.inProgress = false;
+        clearInterval(int);
+      }
+    }, 10);
   }
 }

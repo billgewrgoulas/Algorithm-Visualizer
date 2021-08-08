@@ -75,10 +75,10 @@ export class recBacktracker {
         current.color = 'white';
         current.type = 'empty';
         await this.sleep(50);
-        if (w) {
-          w.color = 'white';
-          w.type = 'empty';
-        }
+
+        w.color = 'white';
+        w.type = 'empty';
+
         stack.push(current);
         current = this.grid[x][y];
         current.visited = true;

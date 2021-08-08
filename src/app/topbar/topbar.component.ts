@@ -69,10 +69,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
     this.index = 2;
     if (opt == 1) {
       this.mazeService?.clear();
-      State.points = [];
     } else if (opt == 2) {
       this.mazeService?.clearPathAndPoints();
-      State.points = [];
     } else if (opt == 3) {
       this.mazeService?.clearPath();
     } else if (opt == 4) {
@@ -125,6 +123,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
       let id = this.grid[s[0]][s[1]].id;
       ids.push(id);
     });
+
+    this.mazeService?.clearPath();
 
     //construct the graph and choose algorithm
     let graph = this.builder.buildgraph(this.grid);

@@ -128,4 +128,12 @@ export class Astar {
   private sleep(ms: number): Promise<any> {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
+  /*private sleep(ms: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('timed out!');
+      }, ms);
+    });
+  }*/
 }

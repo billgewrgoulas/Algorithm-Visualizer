@@ -80,7 +80,7 @@ export class MazesService {
     this.recDiv.recDiv(1, 1, 45 - 2, 19 - 2).then(() => {
       setTimeout(() => {
         State.inProgress = false;
-      }, 4500);
+      }, 4200);
     });
   }
 
@@ -88,6 +88,7 @@ export class MazesService {
     if (State.inProgress || State.fightR) {
       return;
     }
+    State.points = [];
     this.grid.forEach((r: Cell[]) => {
       r.forEach((c: Cell) => {
         if (

@@ -28,10 +28,6 @@ export class TopKService {
 
   private nra(ids: number[]) {
     let nra = new NRA(ids, this.graph, this.grid);
-    nra.btmK(ids).then(() => {
-      setTimeout(() => {
-        State.inProgress = false;
-      }, 3000);
-    });
+    nra.btmK(ids);
   }
 }
