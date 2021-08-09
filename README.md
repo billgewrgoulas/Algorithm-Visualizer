@@ -13,7 +13,7 @@ Uniform Cost Search: Like Astar this algorithm is commonly used in AI. The algor
 ## Maze Generation
 
 Recursive Division:  
-The algorithm devides the maze's space horizontally or vertically at random each time and carves a passage between the two subfields to preserve the connectivity.  
+The algorithm devides the maze's space horizontally or vertically at random each time and carves a passage between the two subfields to preserve the connectivity. 
 It returns when a subfield reaches the minimum size.
 
 Recursive Backtracker:  
