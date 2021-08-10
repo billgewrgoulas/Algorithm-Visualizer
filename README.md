@@ -1,6 +1,6 @@
 # Algorithm Visualizer
 
-Angular app that visualizes various algorithms from my university assignments for maze generation and pathfinding in a spatial network. For the visualization a 2D grid graph was used and each movement can have a vertical or a horizontal direction. Moreover a node can have up to 4 neighbors, and the cost of each edge is 1.
+Angular app that visualizes various algorithms from my university assignments for maze generation and pathfinding in a spatial network. For the visualization a 2D grid graph was used and each movement can have a vertical or a horizontal direction.Moreover a node can have up to 4 neighbors, and the cost of each edge is 1.
 
 ## PathFinding Algorithms  
 
@@ -13,7 +13,7 @@ Uniform Cost Search: Like Astar this algorithm is commonly used in AI. The algor
 ## Maze Generation
 
 Recursive Division:  
-The algorithm devides the maze's space horizontally or vertically at random each time and carves a passage between the two subfields to preserve the connectivity.  
+The algorithm devides the maze's space horizontally or vertically at random each time and carves a passage between the two subfields to preserve the connectivity. 
 It returns when a subfield reaches the minimum size.
 
 Recursive Backtracker:  
