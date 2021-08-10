@@ -4,8 +4,6 @@ import { Node } from '../grid/node';
 export class recBacktracker {
   private grid: Array<Cell[]>;
   private graph: Array<Node> = [];
-  private ns: Array<number[]> = [];
-  private path: Cell[] = [];
 
   constructor(grid: Array<Cell[]>) {
     this.grid = grid;
@@ -13,6 +11,7 @@ export class recBacktracker {
 
   public init() {
     let id = 0;
+    this.graph = [];
 
     this.grid.forEach((row: Cell[]) => {
       row.forEach((c: Cell) => {
@@ -31,8 +30,8 @@ export class recBacktracker {
 
     //determine the neighbors as well as the direction of the walls in between
     //each node must be surrounded by walls
-    for (let i = 1; i < this.grid.length - 1; i += 2) {
-      for (let j = 1; j < this.grid[i].length - 1; j += 2) {
+    for (let i = 1; i < this.grid.length; i += 2) {
+      for (let j = 1; j < this.grid[i].length; j += 2) {
         id = this.grid[i][j].id;
         if (j - 2 >= 0) {
           this.graph[id].setneighbor(this.grid[i][j - 2].id, 1, 1); //west
@@ -62,12 +61,13 @@ export class recBacktracker {
     stack.push(current);
 
     while (stack.length > 0) {
-      if (!this.allVisited(current.id)) {
+      let ns = this.neighbors(current.id);
+      if (ns.length > 0) {
         //choose a neighbor
-        let i: number = this.rand(this.ns.length);
-        let x = this.ns[i][0];
-        let y = this.ns[i][1];
-        let d = this.ns[i][2];
+        let i: number = this.rand(ns.length);
+        let x = ns[i][0];
+        let y = ns[i][1];
+        let d = ns[i][2];
 
         //determine the wall to remove in between
         let w: Cell = this.removeWall(x, y, d);
@@ -79,29 +79,28 @@ export class recBacktracker {
         w.color = 'white';
         w.type = 'empty';
 
-        stack.push(current);
         current = this.grid[x][y];
         current.visited = true;
+        stack.push(current);
       } else {
+        current.color = 'white';
+        current.type = 'empty';
         current = stack.pop(); //backtrack
       }
     }
   }
 
   //get the neighbors if any
-  private allVisited(id: number): boolean {
-    let flag: boolean = true;
-    let x, y;
-    this.ns = [];
+  private neighbors(id: number) {
+    let p;
+    let ns: any = [];
     this.graph[id].neighbors.forEach((n: number[]) => {
-      x = this.graph[n[0]].pos[0];
-      y = this.graph[n[0]].pos[1];
-      if (!this.grid[x][y].visited) {
-        flag = false;
-        this.ns.push([x, y, n[2]]);
+      p = this.graph[n[0]].pos;
+      if (!this.grid[p[0]][p[1]].visited) {
+        ns.push([p[0], p[1], n[2]]);
       }
     });
-    return flag;
+    return ns;
   }
 
   //get the wall between the current cell and neighbor based on the direction

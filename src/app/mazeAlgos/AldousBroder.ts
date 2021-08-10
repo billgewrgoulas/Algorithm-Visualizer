@@ -13,6 +13,7 @@ export class AldousBroder {
 
   public init() {
     let id = 0;
+    this.graph = [];
 
     this.grid.forEach((row: Cell[]) => {
       row.forEach((c: Cell) => {
@@ -32,7 +33,7 @@ export class AldousBroder {
     //determine the neighbors as well as the direction of the walls in between
     //each node must be surrounded by walls
     for (let i = 1; i < this.grid.length; i += 2) {
-      for (let j = 1; j < this.grid[i].length - 1; j += 2) {
+      for (let j = 1; j < this.grid[i].length; j += 2) {
         this.cells.push(this.grid[i][j]);
         this.v++;
         id = this.grid[i][j].id;

@@ -11,6 +11,7 @@ export class randomizedPrim {
 
   public init() {
     let id = 0;
+    this.graph = [];
 
     this.grid.forEach((row: Cell[]) => {
       row.forEach((c: Cell) => {
@@ -30,7 +31,7 @@ export class randomizedPrim {
     //determine the neighbors as well as the direction of the walls in between
     //each node must be surrounded by walls
     for (let i = 1; i < this.grid.length; i += 2) {
-      for (let j = 1; j < this.grid[i].length - 1; j += 2) {
+      for (let j = 1; j < this.grid[i].length; j += 2) {
         id = this.grid[i][j].id;
         if (j - 2 >= 0) {
           this.graph[id].setneighbor(this.grid[i][j - 2].id, 1, 1); //west

@@ -63,11 +63,14 @@ export class Astar {
 
     while (this.pq.length() > 0) {
       let v = this.popNode();
-      this.animator(v[1]);
-      await this.sleep(50);
+
       if (v == 'done') {
         break;
       }
+
+      this.animator(v[1]);
+      await this.sleep(50);
+
       visited[v[1]] = true;
 
       if (t == v[1]) {
