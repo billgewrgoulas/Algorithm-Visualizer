@@ -1,0 +1,6 @@
+{
+	"appId": "com.test.app",
+	"appName": "test",
+	"webDir": "docs",
+	"bundledWebRuntime": false
+}

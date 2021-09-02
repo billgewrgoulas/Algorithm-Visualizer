@@ -77,7 +77,18 @@ export class UCS {
     }
     if (found) {
       this.clear();
-      this.printPath(path[t].split('->').map((p: string) => parseInt(p)));
+      let p = path[t].split('->').map((p: string) => parseInt(p));
+      for (const v of p) {
+        let c = this.graph[v].pos;
+        if (
+          this.grid[c[0]][c[1]].type == 'empty' ||
+          this.grid[c[0]][c[1]].end
+        ) {
+          this.grid[c[0]][c[1]].color = 'yellow';
+          this.grid[c[0]][c[1]].type = 'path';
+          await this.sleep(30);
+        }
+      }
     } else {
       confirm('nodes are not connected');
     }
@@ -90,19 +101,6 @@ export class UCS {
       this.grid[x][y].type = 'visited';
       this.grid[x][y].color = '#4d8ab1';
     }
-  }
-
-  private printPath(path: number[]) {
-    path.forEach((p, index) => {
-      setTimeout(() => {
-        let x = this.graph[p].pos[0];
-        let y = this.graph[p].pos[1];
-        if (this.grid[x][y].type == 'empty' || this.grid[x][y].end) {
-          this.grid[x][y].color = 'yellow';
-          this.grid[x][y].type = 'path';
-        }
-      }, 60 * index);
-    });
   }
 
   private clear() {
