@@ -34,7 +34,7 @@ For this problem a combination of Non Random Access algorithm and an incremental
 
 ## Fight the algorithm
 
-For this problem Astar was used. Since the process is a separate thread it is possible to draw walls while the algorithm is running and redirect it to find the next closest path.
+For this problem Astar was used. Since the process is asynchronous it is possible to draw walls on the board while the algorithm is running and redirect it to find the next closest path.
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
